@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #main-container {
+        margin: 90px 450px;
+        border: solid black;
+        width: 350px; height: 350px;
+        background-color: rgb(216, 252, 209);
+      } 
+
+      .title {
+        margin: 0px;
+        padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .form {
+        margin: 0px;
+        padding: 10px;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .button {
+        font-size: 19px;
+        display: inline-block;
+        background-color: rgb(164, 248, 196);
+        cursor: pointer;
+        height: 40px;
+        margin-left: 110px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .total-order {
+        font-size: 20px;
+        color: red;
+        
+      }
+
+      .float{
+        float: right;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="main-container"> 
+      <h1 class="title">Order Summary</h1>
+
+      <form class="form">
+        <label for="item-count">Items:</label>
+        <input class="float" type="text" placeholder="$47.93" size="10" id="item-count" name="item-count"><br> <br>
+
+        <label for="shipping-fee">Shipping & handling fee:</label>
+        <input class="float" type="text"  size="10" id="shipping-fee" name="shipping-fee"><br><br>
+
+        <button class="button" type="button"  onclick="calculateTotal()">Calculate</button><br><br>
+
+        <label for="total-before-tax">Total before tax:</label>
+        <input class="float" type="text" size="10" id="total-before-tax" name="total-before-tax" readonly><br><br>
+
+        <label for="estimated-tax">Estimated tax (10%):</label>
+        <input class="float" type="text" size="10" id="estimated-tax" name="estimated-tax" readonly><br><br>
+
+        <label class="total-order" for="total-order"> <b>Total Order:</b></label>
+        <input class="float" type="text" size="10" id="total-order" name="total-order" readonly>
+     </form>
+    </div>
+
+    <script> 
+      function calculateTotal() {
+      const 
+      itemCount = parseFloat(document.getElementById("item-count").value);
+      shippingFee = parseFloat(document.getElementById("shipping-fee").value);
+      pricePerItem = 15.97;
+      totalBeforeTax = itemCount * pricePerItem + shippingFee;
+      estimatedTax = totalBeforeTax * 0.1;
+    
+      totalOrder = totalBeforeTax + estimatedTax;
+      document.getElementById("total-before-tax").value = "$" + totalBeforeTax.toFixed(2);
+      document.getElementById("estimated-tax").value = "$" + estimatedTax.toFixed(2);
+      document.getElementById("total-order").value = "$" + totalOrder.toFixed(2);
+      }
+    </script>
+
+  </body>
+</html>
